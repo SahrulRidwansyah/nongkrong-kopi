@@ -99,7 +99,33 @@ body {
     html {
         font-size: 62.5%;
     }
+    #menu {
+    display: inline-block;
 }
+
+.navbar .navbar-nav {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    background-color: #fff;
+    width: 30cm;
+    height: 100vh;
+    transition: 0.3s;
+}
+
+.navbar .navbar-nav.active {
+    right: 0;
+}
+
+.navbar .navbar-nav a {
+    color: var(--bg);
+    display: block;
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+}
+}
+
 
 /* mobile */
 @media (max-width: 450px) {
@@ -107,4 +133,6 @@ body {
         font-size: 55%;
     }
 }
+
+
 
