@@ -19,6 +19,7 @@ body {
     font-family: 'poppins', sans-serif;
     background-color: var(--bg);
     color: #fff;
+    min-height: 2000px;
 }
 
 /* navbar */
@@ -96,6 +97,23 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     padding: 0 7%;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to bottom, transparent, #010101);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3); 
 }
 
 .hero .content h1 {
