@@ -162,45 +162,63 @@ body {
     padding: 8rem 7% 1.4rem;
 }
 
-.about h2 {
+.about h2, 
+.menu h2 {
     text-align: center;
     font-size: 2.6rem;
     margin-bottom: 3rem
+}
+
+.about h2 span, 
+.menu h2 span {
+    color: var(--primary-color);
+}
+
+.about .row { 
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.about .about-img {
+    flex: 1;
+}
+
+.about .about-img img {
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+    max-height: 450px;
+}
+
+.about .content {
+    flex: 1;
+}
+
+.about .content h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.about .content p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: #ccc;
+}
+
+.about h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3rem;
 }
 
 .about h2 span {
     color: var(--primary-color);
 }
 
-.about .row {
-    display: flex;
-}
 
-.about .row .about-img {
-    flex: 1 1 45rem;
-}
-
-.about .row .about-img img {
-    width: 100%;
-}
-
-.about .row .content {
-    flex: 1 1 35rem;
-    padding: 0 1rem;
-}
-
-.about .row .content h3
-{
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
-.about .row .content p {
-    margin-bottom: 0.8rem;
-    font-size: 1.3rem;
-    font-weight: 100;
-    line-height: 1.6;
-}
 /* media Queries */
 
 /* laptop */
