@@ -214,12 +214,12 @@ body {
     text-align: center;
 }
 
-.menu h2 {
+.menu h4 {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
 
-.menu h2 span {
+.menu h4 span {
     color: var(--primary-color);
 }
 
@@ -229,15 +229,50 @@ body {
     margin: auto;
     font-weight: 100;
     line-height: 1.6;
+    color: #fff;
+}
+
+.menu h5 {
+    font-size: 3rem;
+    margin: 4rem 0 2rem;
+    color: #fff;
+}
+
+.menu h5 span {
+    color: var(--primary-color);
 }
 
 .menu .row {
     display: flex;
+    justify-content: center;
+    gap: 3rem;
     flex-wrap: wrap;
-    margin-top: 5rem;
-    justify-content: center;;
+    margin-top: 3rem;
 }
 
+.menu-card {
+    text-align: center;
+    padding-bottom: 4rem;
+}
+
+.menu-card-img {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.menu-card-title {
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.menu-card-price {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
 
 /* Media Queries */
 @media (max-width: 1366px) {
