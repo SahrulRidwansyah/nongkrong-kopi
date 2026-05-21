@@ -1,4 +1,25 @@
-// Hamburger menu
+// =====================
+// FIREBASE SETUP
+// =====================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBmCHF913mWEfGPwoNQ8iy6hIdQLxnitKg",
+    authDomain: "nongkrong-kopi.firebaseapp.com",
+    databaseURL: "https://nongkrong-kopi-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "nongkrong-kopi",
+    storageBucket: "nongkrong-kopi.firebasestorage.app",
+    messagingSenderId: "848822844634",
+    appId: "1:848822844634:web:1f8c0f617e9e59aad979e3"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// =====================
+// HAMBURGER MENU
+// =====================
 const navbarNav = document.querySelector('.navbar-nav');
 const hamburger = document.querySelector('#hamburger-menu');
 
@@ -12,7 +33,9 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Search filter menu
+// =====================
+// SEARCH FILTER MENU
+// =====================
 const searchIcon = document.querySelector('#search');
 const searchWrapper = document.createElement('div');
 searchWrapper.innerHTML = `
@@ -46,7 +69,9 @@ searchInput.addEventListener('input', () => {
     });
 });
 
-// Qty control
+// =====================
+// QTY CONTROL
+// =====================
 document.querySelectorAll('.menu-card').forEach(card => {
     const minus = card.querySelector('.minus');
     const plus = card.querySelector('.plus');
@@ -63,7 +88,9 @@ document.querySelectorAll('.menu-card').forEach(card => {
     });
 });
 
-// Harga menu (sesuai urutan di HTML)
+// =====================
+// HARGA MENU
+// =====================
 const menuPrices = {
     '- Americano Hot -': 18000,
     '- Ice Americano -': 18000,
@@ -79,7 +106,9 @@ function formatRupiah(num) {
     return 'Rp ' + num.toLocaleString('id-ID');
 }
 
-// Modal order
+// =====================
+// MODAL ORDER
+// =====================
 const orderModal = document.getElementById('order-modal');
 const orderSummary = document.getElementById('order-summary');
 const cancelOrder = document.getElementById('cancel-order');
@@ -127,14 +156,16 @@ cancelOrder.addEventListener('click', () => {
     orderModal.classList.remove('active');
 });
 
-// Tutup modal kalau klik di luar box
 orderModal.addEventListener('click', (e) => {
     if (e.target === orderModal) {
         orderModal.classList.remove('active');
     }
 });
 
-confirmOrder.addEventListener('click', () => {
+// =====================
+// KONFIRMASI & KIRIM KE FIREBASE
+// =====================
+confirmOrder.addEventListener('click', async () => {
     const name = document.getElementById('customer-name').value.trim();
     const table = document.getElementById('customer-table').value.trim();
 
@@ -147,20 +178,58 @@ confirmOrder.addEventListener('click', () => {
         return;
     }
 
-    // Tutup modal
-    orderModal.classList.remove('active');
-
-    // Tampilkan notifikasi sukses
-    successMsg.textContent = `Pesanan ${name} di meja ${table} berhasil dikirim!`;
-    successNotif.classList.add('show');
-    setTimeout(() => successNotif.classList.remove('show'), 4000);
-
-    // Reset semua
+    // Kumpulin pesanan
+    const orders = [];
+    let total = 0;
     menuCards.forEach(card => {
-        card.querySelector('.qty-count').textContent = '0';
+        const qty = parseInt(card.querySelector('.qty-count').textContent);
+        if (qty > 0) {
+            const itemName = card.querySelector('.menu-card-title').textContent.trim();
+            const price = menuPrices[itemName] || 0;
+            const subtotal = price * qty;
+            total += subtotal;
+            orders.push({ nama_menu: itemName, qty, harga_satuan: price, subtotal });
+        }
     });
-    document.getElementById('customer-name').value = '';
-    document.getElementById('customer-table').value = '';
 
-    feather.replace();
+    // Data yang dikirim ke Firebase
+    const orderData = {
+        nama_customer: name,
+        nomor_meja: parseInt(table),
+        items: orders,
+        total_harga: total,
+        status: 'pending',
+        waktu: new Date().toLocaleString('id-ID')
+    };
+
+    try {
+        // Kirim ke Firebase
+        confirmOrder.textContent = 'Mengirim...';
+        confirmOrder.disabled = true;
+
+        await push(ref(db, 'pesanan'), orderData);
+
+        // Tutup modal
+        orderModal.classList.remove('active');
+
+        // Notifikasi sukses
+        successMsg.textContent = `Pesanan ${name} di meja ${table} berhasil dikirim ke dapur!`;
+        successNotif.classList.add('show');
+        setTimeout(() => successNotif.classList.remove('show'), 4000);
+
+        // Reset semua
+        menuCards.forEach(card => {
+            card.querySelector('.qty-count').textContent = '0';
+        });
+        document.getElementById('customer-name').value = '';
+        document.getElementById('customer-table').value = '';
+
+    } catch (error) {
+        alert('Gagal kirim pesanan bre, coba lagi!');
+        console.error(error);
+    } finally {
+        confirmOrder.textContent = 'Pesan!';
+        confirmOrder.disabled = false;
+        feather.replace();
+    }
 });
