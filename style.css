@@ -17,7 +17,6 @@ html {
     scroll-behavior: smooth;
 }
 
-
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg);
@@ -174,11 +173,11 @@ body {
     text-align: center;
     font-size: 3rem;
     margin-bottom: 3rem;
+    display: block;
 }
 
 .about h2 span,
-.contact h7 span
- {
+.contact h7 span {
     color: var(--primary-color);
 }
 
@@ -284,11 +283,38 @@ body {
     color: var(--primary-color);
 }
 
+/* Qty Control */
+.qty-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.qty-btn {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-count {
+    font-size: 1.4rem;
+    min-width: 2rem;
+    text-align: center;
+}
+
 /* Contact */
 .contact {
     padding: 8rem 7% 4rem;
     text-align: center;
-
 }
 
 .contact .row {
@@ -304,9 +330,9 @@ body {
 }
 
 .contact .row form {
-  flex: 1 1 45rem;
-  padding: 5rem 2rem;
-  text-align: center;  
+    flex: 1 1 45rem;
+    padding: 5rem 2rem;
+    text-align: center;
 }
 
 .contact .row form .input-group {
@@ -334,11 +360,9 @@ body {
     color: #fff;
     background-color: var(--primary-color);
     cursor: pointer;
-
 }
 
-/* footer */
-
+/* Footer */
 footer {
     background-color: var(--primary-color);
     text-align: center;
@@ -348,7 +372,6 @@ footer {
 
 footer .social {
     padding: 1rem 0;
-
 }
 
 footer .social a {
@@ -357,8 +380,7 @@ footer .social a {
 }
 
 footer .social a:hover,
-footer .links a:hover
-{
+footer .links a:hover {
     color: var(--bg);
 }
 
@@ -375,7 +397,6 @@ footer .credit {
 footer .credit a {
     color: var(--bg);
 }
-
 
 /* Media Queries */
 @media (max-width: 1366px) {
@@ -404,7 +425,9 @@ footer .credit a {
         z-index: 9998;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        padding-top: 8rem;
+        gap: 0;
     }
 
     .navbar .navbar-nav.active { right: 0; }
@@ -412,13 +435,23 @@ footer .credit a {
     .navbar .navbar-nav a {
         color: #fff;
         display: block;
-        margin: 1.5rem;
+        margin: 0.8rem 1.5rem;
         padding: 0.5rem;
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
 
     .navbar .navbar-nav a::after {
         transform-origin: 0 0;
+    }
+
+    .hero .content {
+        text-align: center;
+    }
+
+    .hero .content .cta {
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
     }
 
     .about .row { flex-wrap: wrap; }
@@ -442,30 +475,9 @@ footer .credit a {
         padding-top: 12rem;
     }
 
- .hero .content {
-        text-align: left;
-        padding-top: 15rem;    
+    .hero .content {
+        text-align: center;
     }
-
 
     .hero .content h1 { font-size: 2.5rem; }
-
-    .hero .content .cta {
-        display: block;
-        width: fit-content;
-        margin: 0 auto;
-    }
-
-     .navbar .navbar-nav {
-        padding: 2rem;          
-        justify-content: flex-start; 
-        padding-top: 8rem;      
-        gap: 0;                  
-    }
-
-    .navbar .navbar-nav a {
-        margin: 0.8rem 1.5rem;   
-        font-size: 1.6rem;       
-    }
-
 }
