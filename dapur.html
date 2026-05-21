@@ -290,6 +290,34 @@
     }
     #toast.show { opacity: 1; transform: translateY(0); }
 
+    /* SOUND TOGGLE */
+    #sound-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    #sound-toggle.on {
+      border-color: var(--border-accent);
+      color: var(--primary);
+    }
+    #sound-toggle .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      transition: background 0.2s;
+    }
+    #sound-toggle.on .dot { background: var(--primary); }
+
     /* RESPONSIVE */
     @media (max-width: 600px) {
       header { padding: 1rem; }
@@ -308,7 +336,13 @@
       <span>Nongkrong Kopi</span>
       <div class="badge">Dapur</div>
     </div>
-    <div class="live-dot">Live</div>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button id="sound-toggle" class="on">
+        <span class="dot"></span>
+        <span id="sound-label">Notif: ON</span>
+      </button>
+      <div class="live-dot">Live</div>
+    </div>
   </header>
 
   <div class="stats-bar">
@@ -364,6 +398,46 @@
 
     let allOrders = {};
     let currentFilter = 'semua';
+    let soundEnabled = true;
+    let isFirstLoad = true;
+    let knownIds = new Set();
+
+    // Web Audio — bunyi "ding" pakai oscillator, ga butuh file audio
+    function playNotif() {
+      if (!soundEnabled) return;
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const o1 = ctx.createOscillator();
+        const g1 = ctx.createGain();
+        o1.connect(g1); g1.connect(ctx.destination);
+        o1.type = 'sine';
+        o1.frequency.setValueAtTime(880, ctx.currentTime);
+        o1.frequency.exponentialRampToValueAtTime(660, ctx.currentTime + 0.15);
+        g1.gain.setValueAtTime(0.4, ctx.currentTime);
+        g1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+        o1.start(ctx.currentTime);
+        o1.stop(ctx.currentTime + 0.4);
+        const o2 = ctx.createOscillator();
+        const g2 = ctx.createGain();
+        o2.connect(g2); g2.connect(ctx.destination);
+        o2.type = 'sine';
+        o2.frequency.setValueAtTime(1100, ctx.currentTime + 0.2);
+        o2.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.45);
+        g2.gain.setValueAtTime(0, ctx.currentTime + 0.2);
+        g2.gain.setValueAtTime(0.35, ctx.currentTime + 0.21);
+        g2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+        o2.start(ctx.currentTime + 0.2);
+        o2.stop(ctx.currentTime + 0.6);
+      } catch(e) {}
+    }
+
+    document.getElementById('sound-toggle').addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      const btn = document.getElementById('sound-toggle');
+      const lbl = document.getElementById('sound-label');
+      btn.classList.toggle('on', soundEnabled);
+      lbl.textContent = soundEnabled ? 'Notif: ON' : 'Notif: OFF';
+    });
 
     function showToast(msg) {
       const t = document.getElementById('toast');
@@ -456,7 +530,26 @@
 
     // Realtime listener
     onValue(ref(db, 'pesanan'), (snapshot) => {
-      allOrders = snapshot.val() || {};
+      const newData = snapshot.val() || {};
+      if (isFirstLoad) {
+        // Load pertama — rekam semua ID yang udah ada, ga bunyi
+        Object.keys(newData).forEach(id => knownIds.add(id));
+        isFirstLoad = false;
+      } else {
+        // Cek ada ID baru ga
+        let hasNew = false;
+        Object.keys(newData).forEach(id => {
+          if (!knownIds.has(id)) {
+            knownIds.add(id);
+            hasNew = true;
+          }
+        });
+        if (hasNew) {
+          playNotif();
+          showToast('☕ Pesanan baru masuk!');
+        }
+      }
+      allOrders = newData;
       renderOrders();
     });
 
