@@ -140,7 +140,42 @@
                 </div>
             </div>
         </div>
+
+        <!-- Tombol Order -->
+        <div class="order-btn-wrap">
+            <button id="open-order-modal" class="btn-order">Lanjut Pesan <i data-feather="arrow-right"></i></button>
+        </div>
     </section>
+
+    <!-- Modal Nama & Meja -->
+    <div id="order-modal">
+        <div class="modal-box">
+            <h3>Detail Pesanan</h3>
+
+            <div id="order-summary"></div>
+
+            <div class="modal-input-group">
+                <label for="customer-name">Nama</label>
+                <input type="text" id="customer-name" placeholder="Masukkan nama lo...">
+            </div>
+
+            <div class="modal-input-group">
+                <label for="customer-table">Nomor Meja</label>
+                <input type="number" id="customer-table" placeholder="Contoh: 5" min="1">
+            </div>
+
+            <div class="modal-buttons">
+                <button id="cancel-order" class="btn-cancel">Batal</button>
+                <button id="confirm-order" class="btn-confirm">Pesan!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifikasi sukses -->
+    <div id="order-success">
+        <i data-feather="check-circle"></i>
+        <p id="success-msg"></p>
+    </div>
 
     <section class="contact" id="contact">
         <h7><span>Kontak</span> Kami</h7>

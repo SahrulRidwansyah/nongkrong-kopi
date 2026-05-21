@@ -311,6 +311,209 @@ body {
     text-align: center;
 }
 
+/* Tombol Lanjut Pesan */
+.order-btn-wrap {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.btn-order {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 1.2rem 3.5rem;
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-order:hover {
+    background: #fff;
+    color: var(--primary-color);
+}
+
+/* Modal Order */
+#order-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+#order-modal.active {
+    display: flex;
+}
+
+.modal-box {
+    background: #1a1a1a;
+    border: 1px solid #513c28;
+    border-radius: 1.5rem;
+    padding: 3rem;
+    width: 100%;
+    max-width: 45rem;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-box h3 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #513c28;
+    padding-bottom: 1.5rem;
+}
+
+/* Order Summary */
+#order-summary {
+    margin-bottom: 2rem;
+}
+
+#order-summary .order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #2a2a2a;
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+#order-summary .order-item:last-child {
+    border-bottom: none;
+}
+
+#order-summary .order-item .item-name {
+    color: #ccc;
+}
+
+#order-summary .order-item .item-price {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+#order-summary .order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0 0.5rem;
+    border-top: 1px solid #513c28;
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+#order-summary .order-total span:last-child {
+    color: var(--primary-color);
+}
+
+/* Modal Input */
+.modal-input-group {
+    margin-bottom: 1.5rem;
+}
+
+.modal-input-group label {
+    color: #ccc;
+    font-size: 1.3rem;
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.modal-input-group input {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    background: #010101;
+    color: #fff;
+    border: 1px solid #513c28;
+    border-radius: 0.8rem;
+    font-size: 1.3rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.modal-input-group input:focus {
+    border-color: var(--primary-color);
+}
+
+.modal-input-group input::placeholder {
+    color: #555;
+}
+
+/* Modal Buttons */
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 1.2rem;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #513c28;
+    border-radius: 0.8rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.2s ease;
+}
+
+.btn-cancel:hover {
+    background: #333;
+}
+
+.btn-confirm {
+    flex: 2;
+    padding: 1.2rem;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 0.8rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.2s ease;
+}
+
+.btn-confirm:hover {
+    background: #fff;
+    color: var(--primary-color);
+}
+
+/* Notifikasi Sukses */
+#order-success {
+    display: none;
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a3a1a;
+    border: 1px solid #2d6a2d;
+    color: #6fcf6f;
+    padding: 1.5rem 2.5rem;
+    border-radius: 1rem;
+    font-size: 1.4rem;
+    z-index: 999999;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+}
+
+#order-success.show {
+    display: flex;
+}
+
 /* Contact */
 .contact {
     padding: 8rem 7% 4rem;
@@ -458,12 +661,19 @@ footer .credit a {
 
     .contact .row { flex-wrap: wrap; }
 
-    .contact .row .map {
-        height: 30rem;
+    .contact .row .map { height: 30rem; }
+
+    .contact .row form { padding-top: 0; }
+
+    .modal-box {
+        padding: 2rem;
     }
 
-    .contact .row form {
-        padding-top: 0;
+    #order-success {
+        white-space: normal;
+        text-align: center;
+        bottom: 2rem;
+        width: 85%;
     }
 }
 
