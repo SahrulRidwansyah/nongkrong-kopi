@@ -1,224 +1,994 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nongkrong_Kopi</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NongkrongKopi.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #F5EFE0;
+      --brown-dark: #2C1A0E;
+      --brown-mid: #6B3F1F;
+      --brown-light: #C4884A;
+      --off-white: #FAF7F2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--off-white);
+      color: var(--brown-dark);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background-color: rgba(250, 247, 242, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(196, 136, 74, 0.2);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--brown-dark) !important;
+      letter-spacing: -0.5px;
+    }
+
+    .navbar-brand span {
+      color: var(--brown-light);
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--brown-mid) !important;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem !important;
+      transition: color 0.2s;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--brown-light) !important;
+    }
+
+    .btn-order-nav {
+      background-color: var(--brown-dark);
+      color: var(--cream) !important;
+      border-radius: 50px;
+      padding: 0.4rem 1.4rem !important;
+      font-size: 0.85rem !important;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .btn-order-nav:hover {
+      background-color: var(--brown-light);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 92vh;
+      background-color: var(--brown-dark);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(196,136,74,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(196,136,74,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background-color: rgba(196,136,74,0.15);
+      color: var(--brown-light);
+      border: 1px solid rgba(196,136,74,0.3);
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      color: var(--brown-light);
+      font-style: italic;
+    }
+
+    .hero p {
+      color: rgba(245, 239, 224, 0.65);
+      font-size: 1.1rem;
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-hero-primary {
+      background-color: var(--brown-light);
+      color: var(--brown-dark);
+      border: none;
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-hero-primary:hover {
+      background-color: var(--cream);
+      color: var(--brown-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-hero-secondary {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(245,239,224,0.3);
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 400;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-hero-secondary:hover {
+      border-color: var(--cream);
+      color: var(--cream);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(245,239,224,0.1);
+    }
+
+    .hero-stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--brown-light);
+    }
+
+    .hero-stat-label {
+      font-size: 0.8rem;
+      color: rgba(245, 239, 224, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-img-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-img-wrapper img {
+      width: 100%;
+      max-width: 480px;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 200px 200px 0 200px;
+      filter: brightness(0.85) contrast(1.1);
+    }
+
+    .hero-img-badge {
+      position: absolute;
+      bottom: 30px;
+      left: -20px;
+      background-color: var(--cream);
+      padding: 1rem 1.4rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-img-badge .icon {
+      width: 40px;
+      height: 40px;
+      background-color: var(--brown-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .hero-img-badge .text-sm {
+      font-size: 0.75rem;
+      color: var(--brown-mid);
+    }
+
+    .hero-img-badge .text-bold {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--brown-dark);
+    }
+
+    /* ===== MENU ===== */
+    .menu-section {
+      padding: 6rem 0;
+      background-color: var(--off-white);
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--brown-dark);
+      line-height: 1.2;
+    }
+
+    .menu-filter {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.4rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(107, 63, 31, 0.2);
+      background: transparent;
+      color: var(--brown-mid);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background-color: var(--brown-dark);
+      color: var(--cream);
+      border-color: var(--brown-dark);
+    }
+
+    .menu-card {
+      background-color: white;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(196,136,74,0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
+      height: 100%;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(44,26,14,0.12);
+    }
+
+    .menu-card-img-wrapper {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .menu-card-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .menu-card:hover .menu-card-img-wrapper img {
+      transform: scale(1.06);
+    }
+
+    .menu-card-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background-color: var(--brown-light);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .menu-card-body {
+      padding: 1.25rem;
+    }
+
+    .menu-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brown-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .menu-card-desc {
+      font-size: 0.82rem;
+      color: #8a7060;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .menu-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-card-price {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--brown-mid);
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--off-white);
+      border-radius: 50px;
+      padding: 4px 10px;
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      border: none;
+      background-color: var(--brown-dark);
+      color: white;
+      border-radius: 50%;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .qty-btn:hover {
+      background-color: var(--brown-light);
+    }
+
+    .qty-count {
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-width: 16px;
+      text-align: center;
+      color: var(--brown-dark);
+    }
+
+    .menu-section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0 2rem;
+    }
+
+    .menu-section-divider h5 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brown-dark);
+      white-space: nowrap;
+    }
+
+    .menu-section-divider h5 span {
+      color: var(--brown-light);
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background-color: rgba(196,136,74,0.2);
+    }
+
+    .order-float-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--brown-dark);
+      color: var(--cream);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      display: none;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      z-index: 999;
+      animation: slideUp 0.3s ease;
+    }
+
+    .order-float-bar.show {
+      display: flex;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+
+    .order-float-bar .total {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .btn-lanjut {
+      background-color: var(--brown-light);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .btn-lanjut:hover {
+      background-color: #d4924f;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-content {
+      border-radius: 20px;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .modal-header {
+      border-bottom: 1px solid rgba(196,136,74,0.15);
+      padding: 1.5rem;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--brown-dark);
+    }
+
+    .modal-body { padding: 1.5rem; }
+    .modal-footer { border-top: 1px solid rgba(196,136,74,0.15); padding: 1.2rem 1.5rem; }
+
+    .form-control, .form-label {
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .form-control:focus {
+      border-color: var(--brown-light);
+      box-shadow: 0 0 0 3px rgba(196,136,74,0.15);
+    }
+
+    .btn-confirm {
+      background-color: var(--brown-dark);
+      color: var(--cream);
+      border: none;
+      padding: 0.65rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+    }
+
+    .btn-confirm:hover {
+      background-color: var(--brown-mid);
+      color: var(--cream);
+    }
+
+    .order-item-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(196,136,74,0.1);
+      color: var(--brown-mid);
+    }
+
+    .toast-success {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #2d6a4f;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      display: none;
+      z-index: 9999;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .toast-success.show { display: flex; align-items: center; gap: 8px; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--brown-dark);
+      color: rgba(245, 239, 224, 0.6);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--brown-light);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero-img-wrapper { margin-top: 3rem; text-align: center; }
+      .hero-img-wrapper img { max-width: 320px; height: 360px; }
+      .hero-img-badge { left: 0; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="#" class="navbar-logo">Nongkrong<span>kopi</span>.</a>
-        <div class="navbar-nav">
-            <a href="#home">Home</a>
-            <a href="#about">Tentang Kami</a>
-            <a href="#menu-section">Menu</a>
-            <a href="#contact">Kontak</a>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">Nongkrong<span>Kopi.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+      </ul>
+      <a href="#menu" class="btn-order-nav nav-link">Pesan Sekarang</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="hero-badge"><i class="bi bi-cup-hot-fill me-1"></i> Est. 2020 · Cikarang</div>
+        <h1>Jangan Nongkrong Doang, <span>Sambil Minum Kopi-lah</span></h1>
+        <p>Karena nongkrong lebih asik kalau ada kopi yang bener. Biji kopi pilihan, diseduh dengan cinta, disajikan buat lo.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#menu" class="btn-hero-primary">
+            Lihat Menu <i class="bi bi-arrow-right"></i>
+          </a>
+          <a href="#" class="btn-hero-secondary">Tentang Kami</a>
         </div>
-        <div class="navbar-extra">
-            <a href="#" id="search"><i data-feather="search"></i></a>
-            <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
-            <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-number">8+</div>
+            <div class="hero-stat-label">Varian Minuman</div>
+          </div>
+          <div>
+            <div class="hero-stat-number">4.9</div>
+            <div class="hero-stat-label">Rating</div>
+          </div>
+          <div>
+            <div class="hero-stat-number">500+</div>
+            <div class="hero-stat-label">Pelanggan</div>
+          </div>
         </div>
-    </nav>
-
-    <section class="hero" id="home">
-        <main class="content">
-            <h1>Jangan Nongkrong doang <span>Sambil minum Kopilah</span></h1>
-            <p>Karena nongkrong lebih asik kalau ada kopi yang bener. Yuk, cobain!</p>
-            <a href="#menu-section" class="cta">Pesan Sekarang</a>
-        </main>
-    </section>
-
-    <section class="about" id="about">
-        <h2><span>Tentang</span> Kami</h2>
-        <div class="row">
-            <div class="about-img">
-                <img src="img/coffebg3.jpg" alt="Tentang kami">
+      </div>
+      <div class="col-lg-6 d-flex justify-content-center">
+        <div class="hero-img-wrapper">
+          <img src="img/coffebg3.jpg" alt="Kopi NongkrongKopi" onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=480&h=520&fit=crop'">
+          <div class="hero-img-badge">
+            <div class="icon"><i class="bi bi-star-fill"></i></div>
+            <div>
+              <div class="text-sm">Best Seller</div>
+              <div class="text-bold">Latte Art</div>
             </div>
-            <div class="content">
-                <h3>Kenapa harus nongkrong kopi?</h3>
-                <p>Kami hadir sejak 2020 dengan satu misi sederhana — menyajikan kopi berkualitas tinggi di tempat yang nyaman buat lo nongkrong, kerja, atau sekadar bersantai.</p>
-                <p>Setiap cangkir yang kami sajikan dibuat dengan biji kopi pilihan langsung dari petani lokal Indonesia. Karena kami percaya, kopi yang enak dimulai dari sumbernya.</p>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="menu" id="menu-section">
-        <h4><span>Menu</span> Kami</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae voluptas eligendi consectetur quaerat pariatur laudantium.</p>
-
-        <h5 class="menu-section-title">Coffe <span>Section</span></h5>
-        <div class="row">
-            <div class="menu-card">
-                <img src="img/americano.jpg" alt="Americano" class="menu-card-img">
-                <h6 class="menu-card-title">- Americano Hot -</h6>
-                <p class="menu-card-price">Rp 18.000</p>
-                <div class="qty-control">
-                    <button class="qty-btn minus">−</button>
-                    <span class="qty-count">0</span>
-                    <button class="qty-btn plus">+</button>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="img/iceamericano.jpg" alt="Ice Americano" class="menu-card-img">
-                <h6 class="menu-card-title">- Ice Americano -</h6>
-                <p class="menu-card-price">Rp 18.000</p>
-                <div class="qty-control">
-                    <button class="qty-btn minus">−</button>
-                    <span class="qty-count">0</span>
-                    <button class="qty-btn plus">+</button>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="img/late.jpg" alt="latte" class="menu-card-img">
-                <h6 class="menu-card-title">- Latte Art -</h6>
-                <p class="menu-card-price">Rp 35.000</p>
-                <div class="qty-control">
-                    <button class="qty-btn minus">−</button>
-                    <span class="qty-count">0</span>
-                    <button class="qty-btn plus">+</button>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="img/americano.jpg" alt="Long Black" class="menu-card-img">
-                <h6 class="menu-card-title">- Long Black -</h6>
-                <p class="menu-card-price">Rp 19.000</p>
-                <div class="qty-control">
-                    <button class="qty-btn minus">−</button>
-                    <span class="qty-count">0</span>
-                    <button class="qty-btn plus">+</button>
-                </div>
-            </div>
-        </div>
-
-        <h5 class="menu-section-title">Non Coffe <span>Section</span></h5>
-        <div class="row">
-            <div class="menu-card">
-                <img src="img/matcha.jpeg" alt="Matcha" class="menu-card-img">
-                <h6 class="menu-card-title">- Matcha -</h6>
-                <p class="menu-card-price">Rp 20.000</p>
-                <div class="qty-control">
-                    <button class="qty-btn minus">−</button>
-                    <span class="qty-count">0</span>
-                    <button class="qty-btn plus">+</button>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="img/milktea.jpeg" alt="Milk Tea" class="menu-card-img">
-                <h6 class="menu-card-title">- Milk Tea -</h6>
-                <p class="menu-card-price">Rp 25.000</p>
-                <div class="qty-control">
-                    <button class="qty-btn minus">−</button>
-                    <span class="qty-count">0</span>
-                    <button class="qty-btn plus">+</button>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="img/chocmilk.jpeg" alt="Choco Milk" class="menu-card-img">
-                <h6 class="menu-card-title">- Choco Milk -</h6>
-                <p class="menu-card-price">Rp 25.000</p>
-                <div class="qty-control">
-                    <button class="qty-btn minus">−</button>
-                    <span class="qty-count">0</span>
-                    <button class="qty-btn plus">+</button>
-                </div>
-            </div>
-            <div class="menu-card">
-                <img src="img/water.jpeg" alt="Water" class="menu-card-img">
-                <h6 class="menu-card-title">- Glass of Water -</h6>
-                <p class="menu-card-price">Rp 5.000</p>
-                <div class="qty-control">
-                    <button class="qty-btn minus">−</button>
-                    <span class="qty-count">0</span>
-                    <button class="qty-btn plus">+</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tombol Order -->
-        <div class="order-btn-wrap">
-            <button id="open-order-modal" class="btn-order">Lanjut Pesan <i data-feather="arrow-right"></i></button>
-        </div>
-    </section>
-
-    <!-- Modal Nama & Meja -->
-    <div id="order-modal">
-        <div class="modal-box">
-            <h3>Detail Pesanan</h3>
-
-            <div id="order-summary"></div>
-
-            <div class="modal-input-group">
-                <label for="customer-name">Nama</label>
-                <input type="text" id="customer-name" placeholder="Masukkan nama lo...">
-            </div>
-
-            <div class="modal-input-group">
-                <label for="customer-table">Nomor Meja</label>
-                <input type="number" id="customer-table" placeholder="Contoh: 5" min="1">
-            </div>
-
-            <div class="modal-buttons">
-                <button id="cancel-order" class="btn-cancel">Batal</button>
-                <button id="confirm-order" class="btn-confirm">Pesan!</button>
-            </div>
-        </div>
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <div class="section-label">— Pilihan Kami</div>
+        <h2 class="section-title">Menu <span style="color:var(--brown-light)">Favorit</span></h2>
+      </div>
     </div>
 
-    <!-- Notifikasi sukses -->
-    <div id="order-success">
-        <i data-feather="check-circle"></i>
-        <p id="success-msg"></p>
+    <div class="menu-filter" id="menuFilter">
+      <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="coffee">Coffee</button>
+      <button class="filter-btn" data-filter="noncoffee">Non-Coffee</button>
     </div>
 
-    <section class="contact" id="contact">
-        <h7><span>Kontak</span> Kami</h7>
-        <p>Kalau ada yang mau ditanyakan atau mau ada masukan bisa hubungi kami lewat form di bawah ini.</p>
-        <div class="row">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63454.50017542316!2d107.15467799999998!3d-6.276054450000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6984da266e128d%3A0xaed3fa7339ea3029!2sKec.%20Cikarang%20Utara%2C%20Kabupaten%20Bekasi%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1779168071658!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
-            <form action="">
-                <div class="input-group">
-                    <i data-feather="user"></i>
-                    <input type="text" placeholder="Nama Lengkap">
-                </div>
-                <div class="input-group">
-                    <i data-feather="mail"></i>
-                    <input type="text" placeholder="Email">
-                </div>
-                <div class="input-group">
-                    <i data-feather="phone"></i>
-                    <input type="text" placeholder="No HP">
-                </div>
-                <button type="submit" class="btn">Kirim Pesan</button>
-            </form>
-        </div>
-    </section>
+    <!-- Coffee Section -->
+    <div class="menu-section-divider">
+      <h5>Coffee <span>Section</span></h5>
+      <div class="divider-line"></div>
+    </div>
 
-    <footer>
-        <div class="social">
-            <a href="#"><i data-feather="facebook"></i></a>
-            <a href="#"><i data-feather="twitter"></i></a>
-            <a href="#"><i data-feather="instagram"></i></a>
+    <div class="row g-4" id="coffeeGrid">
+      <div class="col-6 col-lg-3 menu-item coffee">
+        <div class="menu-card">
+          <div class="menu-card-img-wrapper">
+            <img src="img/americano.jpg" alt="Americano" onerror="this.src='https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=300&h=200&fit=crop'">
+            <div class="menu-card-tag">Hot</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-title">Americano Hot</div>
+            <div class="menu-card-desc">Espresso dengan air panas, bold dan pahit yang pas</div>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">Rp 18.000</div>
+              <div class="qty-control">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-count">0</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="links">
-            <a href="#home">Home</a>
-            <a href="#about">Tentang Kami</a>
-            <a href="#menu-section">Menu</a>
-            <a href="#contact">Kontak</a>
-        </div>
-        <div class="credit">
-            <p>Created by <a href="#">Sahrul_Ridwansyah</a>. | &copy; 2026 All rights reserved.</p>
-        </div>
-    </footer>
+      </div>
 
-    <script>feather.replace();</script>
-    <script type="module" src="script.js"></script>
+      <div class="col-6 col-lg-3 menu-item coffee">
+        <div class="menu-card">
+          <div class="menu-card-img-wrapper">
+            <img src="img/iceamericano.jpg" alt="Ice Americano" onerror="this.src='https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=200&fit=crop'">
+            <div class="menu-card-tag">Ice</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-title">Ice Americano</div>
+            <div class="menu-card-desc">Seger dan bold, cocok buat cuaca panas Cikarang</div>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">Rp 18.000</div>
+              <div class="qty-control">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-count">0</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="col-6 col-lg-3 menu-item coffee">
+        <div class="menu-card">
+          <div class="menu-card-img-wrapper">
+            <img src="img/late.jpg" alt="Latte Art" onerror="this.src='https://images.unsplash.com/photo-1534040385115-33dcb3acba5b?w=300&h=200&fit=crop'">
+            <div class="menu-card-tag">Best Seller</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-title">Latte Art</div>
+            <div class="menu-card-desc">Espresso dengan susu steamed, cantik dan creamy</div>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">Rp 35.000</div>
+              <div class="qty-control">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-count">0</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3 menu-item coffee">
+        <div class="menu-card">
+          <div class="menu-card-img-wrapper">
+            <img src="img/americano.jpg" alt="Long Black" onerror="this.src='https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=300&h=200&fit=crop'">
+            <div class="menu-card-tag">Hot</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-title">Long Black</div>
+            <div class="menu-card-desc">Double espresso di atas air panas, kuat dan beraroma</div>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">Rp 19.000</div>
+              <div class="qty-control">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-count">0</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Non-Coffee Section -->
+    <div class="menu-section-divider">
+      <h5>Non-Coffee <span>Section</span></h5>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="row g-4" id="nonCoffeeGrid">
+      <div class="col-6 col-lg-3 menu-item noncoffee">
+        <div class="menu-card">
+          <div class="menu-card-img-wrapper">
+            <img src="img/matcha.jpeg" alt="Matcha" onerror="this.src='https://images.unsplash.com/photo-1582793988951-9aed5509eb97?w=300&h=200&fit=crop'">
+            <div class="menu-card-tag">Non-Coffee</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-title">Matcha Latte</div>
+            <div class="menu-card-desc">Green tea premium dengan susu segar yang creamy</div>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">Rp 20.000</div>
+              <div class="qty-control">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-count">0</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3 menu-item noncoffee">
+        <div class="menu-card">
+          <div class="menu-card-img-wrapper">
+            <img src="img/milktea.jpeg" alt="Milk Tea" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop'">
+            <div class="menu-card-tag">Non-Coffee</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-title">Milk Tea</div>
+            <div class="menu-card-desc">Teh pilihan dengan susu segar, manis dan menyegarkan</div>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">Rp 25.000</div>
+              <div class="qty-control">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-count">0</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3 menu-item noncoffee">
+        <div class="menu-card">
+          <div class="menu-card-img-wrapper">
+            <img src="img/chocmilk.jpeg" alt="Choco Milk" onerror="this.src='https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&h=200&fit=crop'">
+            <div class="menu-card-tag">Non-Coffee</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-title">Choco Milk</div>
+            <div class="menu-card-desc">Cokelat rich dengan susu segar hangat atau dingin</div>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">Rp 25.000</div>
+              <div class="qty-control">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-count">0</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3 menu-item noncoffee">
+        <div class="menu-card">
+          <div class="menu-card-img-wrapper">
+            <img src="img/water.jpeg" alt="Water" onerror="this.src='https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&h=200&fit=crop'">
+            <div class="menu-card-tag">Non-Coffee</div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-title">Glass of Water</div>
+            <div class="menu-card-desc">Air mineral segar, buat yang lagi ngadem aja</div>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">Rp 5.000</div>
+              <div class="qty-control">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-count">0</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOATING ORDER BAR -->
+<div class="order-float-bar" id="orderBar">
+  <div>
+    <div style="font-size:0.75rem; opacity:0.6;">Total Pesanan</div>
+    <div class="total" id="totalPrice">Rp 0</div>
+  </div>
+  <button class="btn-lanjut" data-bs-toggle="modal" data-bs-target="#orderModal">
+    Lanjut Pesan <i class="bi bi-arrow-right"></i>
+  </button>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal fade" id="orderModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detail Pesanan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="orderSummary" class="mb-3"></div>
+        <div class="mb-3">
+          <label class="form-label fw-500" style="font-size:0.9rem; color:var(--brown-mid);">Nama Kamu</label>
+          <input type="text" class="form-control" id="custName" placeholder="Masukkan nama lo...">
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-500" style="font-size:0.9rem; color:var(--brown-mid);">Nomor Meja</label>
+          <input type="number" class="form-control" id="custTable" placeholder="Contoh: 5" min="1">
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <div style="font-weight:700; color:var(--brown-dark);" id="modalTotal">Total: Rp 0</div>
+        <button class="btn btn-confirm" id="confirmBtn">Pesan Sekarang!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-success" id="toastSuccess">
+  <i class="bi bi-check-circle-fill me-2"></i>
+  <span id="toastMsg"></span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--cream); margin-bottom:0.5rem;">NongkrongKopi.</p>
+    <p>Jababeka, Cikarang · Buka 07.00 – 22.00</p>
+    <p class="mt-2">Made with ☕ by <a href="https://github.com/SahrulRidwansyah">Sahrul Ridwansyah</a></p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const menuData = [
+    { name: 'Americano Hot', price: 18000 },
+    { name: 'Ice Americano', price: 18000 },
+    { name: 'Latte Art', price: 35000 },
+    { name: 'Long Black', price: 19000 },
+    { name: 'Matcha Latte', price: 20000 },
+    { name: 'Milk Tea', price: 25000 },
+    { name: 'Choco Milk', price: 25000 },
+    { name: 'Glass of Water', price: 5000 },
+  ];
+
+  const formatRp = (n) => 'Rp ' + n.toLocaleString('id-ID');
+
+  function getQtys() {
+    return [...document.querySelectorAll('.qty-count')].map(el => parseInt(el.textContent));
+  }
+
+  function updateOrderBar() {
+    const qtys = getQtys();
+    let total = 0;
+    qtys.forEach((q, i) => total += q * menuData[i].price);
+    const hasOrder = total > 0;
+    const bar = document.getElementById('orderBar');
+    bar.classList.toggle('show', hasOrder);
+    document.getElementById('totalPrice').textContent = formatRp(total);
+    document.getElementById('modalTotal').textContent = 'Total: ' + formatRp(total);
+
+    const summary = document.getElementById('orderSummary');
+    summary.innerHTML = '';
+    qtys.forEach((q, i) => {
+      if (q > 0) {
+        summary.innerHTML += `<div class="order-item-row"><span>${menuData[i].name} x${q}</span><span>${formatRp(q * menuData[i].price)}</span></div>`;
+      }
+    });
+  }
+
+  document.querySelectorAll('.qty-btn.plus').forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      const countEl = btn.closest('.qty-control').querySelector('.qty-count');
+      countEl.textContent = parseInt(countEl.textContent) + 1;
+      updateOrderBar();
+    });
+  });
+
+  document.querySelectorAll('.qty-btn.minus').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const countEl = btn.closest('.qty-control').querySelector('.qty-count');
+      const val = parseInt(countEl.textContent);
+      if (val > 0) countEl.textContent = val - 1;
+      updateOrderBar();
+    });
+  });
+
+  document.getElementById('confirmBtn').addEventListener('click', () => {
+    const name = document.getElementById('custName').value.trim();
+    const table = document.getElementById('custTable').value.trim();
+    if (!name || !table) {
+      alert('Isi nama dan nomor meja dulu ya!');
+      return;
+    }
+    bootstrap.Modal.getInstance(document.getElementById('orderModal')).hide();
+    document.querySelectorAll('.qty-count').forEach(el => el.textContent = '0');
+    updateOrderBar();
+    document.getElementById('custName').value = '';
+    document.getElementById('custTable').value = '';
+    const toast = document.getElementById('toastSuccess');
+    document.getElementById('toastMsg').textContent = `Pesanan ${name} (Meja ${table}) berhasil dikirim!`;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.menu-item').forEach(item => {
+        if (filter === 'all' || item.classList.contains(filter)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
